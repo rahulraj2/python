@@ -29,4 +29,4 @@ scikit-plot==0.3.7
 xgboost==1.1.1
 matplotlib==3.2.2
 seaborn==0.9.0
-tensorflow==2.0.0
+tensorflow==2.0.1
