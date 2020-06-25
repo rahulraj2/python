@@ -1,6 +1,7 @@
-node{
+pipeline{
+  agent any
 stages{
-stage{
+stage('Print'){
 steps{
 script{
 echo "Hello WOrld"
