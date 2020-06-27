@@ -1,5 +1,5 @@
-FROM python:3.7-slim
-WORKDIR app
+FROM rahulraj/python:3.7-py-slim-pkg as build
+WORKDIR /app
 RUN apt-get update 
 RUN apt-get install gcc -y \
 && apt-get install -y unixodbc-dev \
@@ -8,4 +8,15 @@ RUN apt-get install gcc -y \
 && apt-get  clean
 COPY requirements.txt /app/requirements.txt
 RUN pip install -r requirements.txt
-CMD ["flask","-h 0.0.0.0","-p 5000","app.py"]
+COPY . .
+RUN pyinstaller app.py
+RUN chmod 777 /app/dist/app/*
+RUN chmod 777 /app/dist/app/app
+
+FROM gcr.io/distroless/python3
+WORKDIR /app
+USER root
+COPY --from=build /app/dist/app/* /app/
+COPY --from=build /lib/x86_64-linux-gnu/libc.so.6 /lib/x86_64-linux-gnu/libc.so.6
+ENV PATH=$PATH:/app/
+ENTRYPOINT [ "app" ]
