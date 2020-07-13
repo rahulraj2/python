@@ -12,7 +12,11 @@ def query_example():
 def formexample():
     a = {"Name": "Rahul", "Role": "Developer"}
     return a.Name
-
+@app.route('/readafile')
+def readfilepython():
+    f = open("sample.txt","r")
+    contents = f.read()
+    return contents
 @app.route('/json-example')
 def jsonexample():
     return 'Todo...'
