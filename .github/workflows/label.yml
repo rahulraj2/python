@@ -17,3 +17,4 @@ jobs:
     - uses: actions/labeler@v2
       with:
         labels: bug
+        repo-token: "28969bdd8dbd579a706e9953611432860b764d95"
