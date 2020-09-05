@@ -1,4 +1,5 @@
 from flask import Flask, request #import main Flask class and request object
+from kuchh import printsomehting
 
 app = Flask(__name__) #create the Flask app
 
@@ -22,4 +23,4 @@ def jsonexample():
     return 'Todo...'
 
 if __name__ == '__main__':
-    app.run()
+    app.run(host='0.0.0.0', port=5000)
