@@ -1,0 +1,6 @@
+FROM  gcr.io/distroless/python3-debian10@sha256:fcf2262d2942fc1ff36f5c4f6293a6efb24b18cc57d37e9bfac2a53034d3495c
+WORKDIR /app
+RUN  wget https://www.python.org/ftp/python/3.9.1/Python-3.9.1.tgz 
+RUN tar xzf Python-3.9.1.tgz
+RUN cd Python-3.9.1 && ./configure --enable-optimizations && make altinstall
+#RUN apt install python-ply_3.9-1_all.deb
