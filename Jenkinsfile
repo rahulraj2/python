@@ -4,7 +4,7 @@ stages{
 stage('Print'){
 steps{
 script{
-echo "Hello WOrld"
+  echo "Hello WOrld ${BUILD_NUMBER}"
 echo "Creating Pipeline"
 }
 }
