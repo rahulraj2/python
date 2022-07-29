@@ -27,18 +27,18 @@ RUN apk add --no-cache --virtual .build-deps                                    
 # Retrieve, verify and unpack Nginx source - key server pgp.mit.edu  
 RUN set -x                                                                      &&  \
     cd /tmp                                                                     &&  \
-    gpg --keyserver pool.sks-keyservers.net --recv-keys                             \
-        B0F4253373F8F6F510D42178520A9993A1C052F8                                &&  \
+    #gpg --keyserver pool.sks-keyservers.net --recv-keys                             \
+   #     B0F4253373F8F6F510D42178520A9993A1C052F8                                &&  \
     wget -q http://nginx.org/download/nginx-${VERSION}.tar.gz                   &&  \
     wget -q http://nginx.org/download/nginx-${VERSION}.tar.gz.asc               &&  \
-    gpg --verify nginx-${VERSION}.tar.gz.asc                                    &&  \
+    #gpg --verify nginx-${VERSION}.tar.gz.asc                                    &&  \
     tar -xf nginx-${VERSION}.tar.gz                                             &&  \
     echo ${VERSION}                                           
 WORKDIR /tmp/nginx-${VERSION}
 # Build and install nginx
 RUN ./configure                                                                     \
-        --with-ld-opt="-static"                                                     \
-        --without-http_gzip_module                                                  \
+    #    --with-ld-opt="-static"                                                     \
+    #    --with-zlib="/usr/local/nginx/sbin/nginx"                                   \
         --with-http_sub_module                                                  &&  \
     make install                                                                &&  \
     strip /usr/local/nginx/sbin/nginx

@@ -1,0 +1,12 @@
+FROM python:3 as builder
+
+FROM gcr.io/distroless/python3-debian11
+ENV PATH=$PATH:/usr/local/bin
+ENV LD_LIBRARY_PATH=/usr/local/lib
+
+COPY --from=builder /usr/local/lib/ /usr/local/lib/
+COPY  --from=builder /usr/local/bin /usr/local/bin
+COPY --from=builder /bin /bin
+RUN rm -rf /etc/python3.7 /usr/lib/python3.7 /usr/bin/python3.7m  /usr/share/binfmts/python3.7 /usr/bin/python3.7 /usr/local/lib/python3.7
+
+ENTRYPOINT [ "/bin/sh" ]
