@@ -23,4 +23,4 @@ COPY --from=build /app/dist/app /demo/app
 COPY --from=build /lib/x86_64-linux-gnu/libc.so.6 /lib/x86_64-linux-gnu/libc.so.6
 ENV PATH=$PATH:/demo/
 EXPOSE 5000
-ENTRYPOINT [ "bash" ]
+ENTRYPOINT [ "python" ]
